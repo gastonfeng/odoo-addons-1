@@ -3,8 +3,9 @@
 # Copyright 2017 OdooMod <jarvis@odoomod.com>
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
+from odoo.addons.web.controllers.main import ReportController
+
 from odoo import http
-from odoo.addons.web.controllers.main import Reports, ReportController
 
 
 class WebPdfReports(ReportController):
@@ -15,9 +16,9 @@ class WebPdfReports(ReportController):
         return result
 
 
-class PreviewReports(Reports):
+class PreviewReports(ReportController):
     @http.route('/web/report', type='http', auth="user")
-    @http.serialize_exception
+    #    @http.serialize_exception
     def index(self, action, token):
         result = super(PreviewReports, self).index(action, token)
         result.headers['Content-Disposition'] = result.headers['Content-Disposition'].replace('attachment', 'inline')
