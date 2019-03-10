@@ -4,7 +4,7 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
 from odoo import http
-from odoo.addons.web.controllers.main import Reports, ReportController
+from odoo.addons.web.controllers.main import ReportController
 
 
 class WebPdfReports(ReportController):
@@ -15,7 +15,7 @@ class WebPdfReports(ReportController):
         return result
 
 
-class PreviewReports(Reports):
+class PreviewReports(ReportController):
     @http.route('/web/report', type='http', auth="user")
     @http.serialize_exception
     def index(self, action, token):
